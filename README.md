@@ -20,10 +20,7 @@ cd nft-collectibles-blender-python
 cd scripts
 ```
 
-In your favorite text/code editor, open *gen_metadata.py* and *gen_model.py*.  
-
-Then, set the value of each setting in script files.  
-
+Set the value of each setting in script files.  
 In particular, **PROJECT_DIR should be set to the absolute path to this repository you cloned.**
 
 In *gen_metadata.py*,
@@ -71,7 +68,7 @@ Open Blender and move to **Scripting** workspace.
 
 To check the status during processing, you can open the console by clicking **“Window”-> “Toggle System Console”** in the top menu.  
 
-Then, click the **Open** -> choose a *gen_metadata.py* -> click the **Run Script**. 
+In Scripting workspace, click the **Open** -> choose a *gen_metadata.py* -> click the **Run Script**. 
 
 *If you get the error message **"ERROR: Properties duplicate."**, please run again.  
 This message show when there is a metadata for each file that has exactly the same attributes. To create a unique collection, you have to avoid duplication.  
