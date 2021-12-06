@@ -13,9 +13,16 @@ For details, please check https://blog.hdks.org/Create-NFT-3D-Collectibles-Using
 git clone https://github.com/hideckies/nft-collectibles-blender-python.git
 ```
 
-### 2. Settings
+### 2. Settings in script files
 
-Set the value of each setting in script files.  
+```bash
+cd nft-collectibles-blender-python
+cd scripts
+```
+
+In your favorite text/code editor, open *gen_metadata.py* and *gen_model.py*.  
+
+Then, set the value of each setting in script files.  
 
 In particular, **PROJECT_DIR should be set to the absolute path to this repository you cloned.**
 
