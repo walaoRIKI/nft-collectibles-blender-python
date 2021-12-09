@@ -1,5 +1,7 @@
 # NFT Collectibles using Blender Python
 
+![image](https://blog.hdks.org/images/Create-NFT-3D-Collectibles-Using-Blender-Scripting/top_image.png)
+
 ## What is this?
 
 This project is to demonstrate for generating NFT Collectible **Avatar-Styled** images.
