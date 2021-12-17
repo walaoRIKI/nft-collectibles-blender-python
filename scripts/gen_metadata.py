@@ -11,7 +11,7 @@ import shutil
 TOTAL_CHARACTERS = 4
 
 # An absolute path for the root directory
-PROJECT_DIR = "c:/nft-collectibles-blender-python/"
+PROJECT_DIR = "c:/Users/deehi/projects/hideckies/nft-collectibles-blender-python/"
 
 # Output directory to where all metadata files generated
 OUTPUTS_DIR = PROJECT_DIR + "outputs/"
@@ -20,7 +20,7 @@ OUTPUTS_DIR = PROJECT_DIR + "outputs/"
 METADATA_NAME = "NFT Character"
 METADATA_SYMBOL = ""
 METADATA_DESCRIPTION = "NFT Collectibles using Blender Python"
-METADATA_IMAGE_BASE_URL = "https://example.com/"
+METADATA_IMAGE_URL = "https://example.com/"
 METADATA_EXTERNAL_URL = "https://example.com/"
 
 # List - One item will be selected for each list
@@ -37,14 +37,11 @@ list_head = [
 
 
 def rand_attributes(id):
-    # Rarity
-    rarity = random.randint(0, 499)
-
+    # Random parts
     rand_head = random.choice(list_head)
-
     rand_body = random.choice(list_body)
 
-    # Format
+    # Formatting
     rand_body = rand_body.replace("_", " ").title()
     rand_head = rand_head.replace("_", " ").title()
 
@@ -82,7 +79,6 @@ def main():
         print("ERROR: Outputs directory does not exist. Set the absolute path to the OUTPUTS_DIR.")
         return
 
-
     print("Start generating metadata...")
 
     # Create dict
@@ -99,7 +95,7 @@ def main():
     unique_list = list(map(json.loads, set(map(json.dumps, dict_list))))
     # Check duplicates
     if len(unique_list) < TOTAL_CHARACTERS:
-        print("ERROR: Properties duplicate.")
+        print("ERROR: Properties duplicate. Please run again.")
         return
     # Add background to attribute
     for u in unique_list:
@@ -113,7 +109,7 @@ def main():
             "name": METADATA_NAME + " #" + str(i),
             "symbol": METADATA_SYMBOL,
             "description": METADATA_DESCRIPTION,
-            "image": METADATA_IMAGE_BASE_URL + str(i) + ".png",
+            "image": METADATA_IMAGE_URL + str(i) + ".png",
             "external_url": METADATA_EXTERNAL_URL + str(i),
             "attributes": adict["attributes"]
         }

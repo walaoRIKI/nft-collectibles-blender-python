@@ -9,7 +9,7 @@ import shutil
 # ----------- Settings -----------------------------------------------------------
 
 # An absolute path for the root directory
-PROJECT_DIR = "c:/nft-collectibles-blender-python/"
+PROJECT_DIR = "c:/Users/deehi/projects/hideckies/nft-collectibles-blender-python/"
 
 # Parts directory containing each directory like "body" or "head" or "misc"
 PARTS_DIR = PROJECT_DIR + "parts/"
