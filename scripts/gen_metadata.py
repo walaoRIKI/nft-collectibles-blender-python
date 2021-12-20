@@ -8,10 +8,10 @@ import shutil
 #  --- Settings -----------------------------------------------------------------------------------------
 
 # Total number of characters generated
-TOTAL_CHARACTERS = 4
+TOTAL_CHARACTERS = 3
 
 # An absolute path for the root directory
-PROJECT_DIR = "c:/Users/deehi/projects/hideckies/nft-collectibles-blender-python/"
+PROJECT_DIR = "c:/nft-collectibles-blender-python/"
 
 # Output directory to where all metadata files generated
 OUTPUTS_DIR = PROJECT_DIR + "outputs/"
