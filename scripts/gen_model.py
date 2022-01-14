@@ -9,7 +9,7 @@ import shutil
 # ----------- Settings -----------------------------------------------------------
 
 # An absolute path for the root directory
-PROJECT_DIR = "D:/Unity Git Project/nft-collectibles-blender-python/"
+PROJECT_DIR = "C:/Users/teoh_/Desktop/Git Project/NFT Collectible/"
 
 # Parts directory containing each directory like "body" or "head" or "misc"
 PARTS_DIR = PROJECT_DIR + "parts/"
@@ -59,7 +59,7 @@ def append_asset_misc():
     scene.camera = cam
 
 def append_asset_body(t):
-    body_type = mat_type = "body_" + t
+    body_type = mat_type = "body " + t
 
     path = PARTS_DIR + "body/" + body_type + ".blend/Collection/"
     bpy.ops.wm.append(filename=body_type, directory=path)
@@ -67,7 +67,7 @@ def append_asset_body(t):
     body_col = bpy.data.collections[body_type]
 
 def append_asset_head(t):
-    head_type = mat_type = "head_" + t
+    head_type = mat_type = "head " + t
 
     path = PARTS_DIR + "head/" + head_type + ".blend/Collection/"
     bpy.ops.wm.append(filename=head_type, directory=path)
@@ -75,7 +75,7 @@ def append_asset_head(t):
     head_col = bpy.data.collections[head_type]
 
 def append_asset_hand(t):
-    hand_type = mat_type = "hand_" + t
+    hand_type = mat_type = "hand " + t
 
     path = PARTS_DIR + "hand/" + hand_type + ".blend/Collection/"
     bpy.ops.wm.append(filename=hand_type, directory=path)
@@ -83,13 +83,33 @@ def append_asset_hand(t):
     hand_col = bpy.data.collections[hand_type]
 
 def append_asset_leg(t):
-    leg_type = mat_type = "leg_" + t
+    leg_type = mat_type = "leg " + t
 
     path = PARTS_DIR + "leg/" + leg_type + ".blend/Collection/"
     bpy.ops.wm.append(filename=leg_type, directory=path)
 
     leg_col = bpy.data.collections[leg_type]
 
+#Insert the background blender
+def append_asset_bg():
+    bg_type = mat_type = "background"
+
+    path = PARTS_DIR + "background/" + bg_type +".blend/Collection/"
+    bpy.ops.wm.append(filename=bg_type, directory=path)
+
+    bg_col = bpy.data.collections[bg_type]
+
+#Change the background image
+def background_ChangeImage(t):
+    bg_Name = t
+
+    path = PARTS_DIR + "background/" + bg_Name +".blend/Collection/"
+    mat = bpy.data.materials["Background"]
+    nodes = mat.node_tree.nodes
+    img_node = nodes.get("Image Texture")
+    if img_node:
+        print("Success Get")
+        img_node.image = bpy.data.images.load(path)
 
 def render(id):
     # Render
@@ -101,7 +121,7 @@ def render(id):
 
 def remove_assets():
     for col in bpy.data.collections:
-        if col.name != "misc":
+        if col.name != "misc" or col.name != "background":
             for obj in col.objects:
                 bpy.data.objects.remove(obj)
             bpy.data.collections.remove(col)
@@ -113,16 +133,18 @@ def generate(id, adict):
         print(attr["trait_type"])
         # Body
         if attr["trait_type"] == "Body" and attr["value"] != "":
-            append_asset_body(attr["value"].replace(" ", "_").lower())
+            append_asset_body(attr["value"])
         # Head
         if attr["trait_type"] == "Head" and attr["value"] != "":
-            append_asset_head(attr["value"].replace(" ", "_").lower())
+            append_asset_head(attr["value"])
         # Head
         if attr["trait_type"] == "Hand" and attr["value"] != "":
-            append_asset_hand(attr["value"].replace(" ", "_").lower())
+            append_asset_hand(attr["value"])
             # Head
         if attr["trait_type"] == "Leg" and attr["value"] != "":
-            append_asset_leg(attr["value"].replace(" ", "_").lower())
+            append_asset_leg(attr["value"])
+        if attr["trait_type"] == "bg" and attr["value"] != "":
+            background_ChangeImage(attr["value"])
 
     render(str(id))
     remove_assets()
@@ -144,6 +166,7 @@ def main():
     init()
     set_render_config()
     append_asset_misc()
+    append_asset_bg()
 
     # Get all metadata files in "outputs" directory
     metadata_files = glob.glob(OUTPUTS_DIR + "/*.json")

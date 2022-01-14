@@ -8,10 +8,10 @@ import shutil
 #  --- Settings -----------------------------------------------------------------------------------------
 
 # Total number of characters generated
-TOTAL_CHARACTERS = 3
+TOTAL_CHARACTERS = 20
 
 # An absolute path for the root directory
-PROJECT_DIR = "D:/Unity Git Project/nft-collectibles-blender-python/"
+PROJECT_DIR = "C:/Users/teoh_/Desktop/Git Project/NFT Collectible/"
 
 # Output directory to where all metadata files generated
 OUTPUTS_DIR = PROJECT_DIR + "outputs/"
@@ -25,16 +25,18 @@ METADATA_EXTERNAL_URL = "https://example.com/"
 
 # List - One item will be selected for each list
 list_body = [
-    "1", "2"
+    "samurai 5", "samurai 7"
 ]
 list_head = [
-    "1", "2", "3"
+    "chicken", "cow", "dog", "dragon", "horse", "monkey", "mouse", "pig", "rabbit", "sheep", "snake", "tiger"
 ]
 list_hand = [
-    "1", "2"
+    "samurai 5", "samurai 7"
 ]
 list_leg = [
-    "1", "2"
+    "samurai 5", "samurai 7"
+]
+list_bg = [
 ]
 # -------------------------------------------------------------------------------------------------------
 
@@ -45,12 +47,13 @@ def rand_attributes(id):
     rand_body = random.choice(list_body)
     rand_hand = random.choice(list_hand)
     rand_leg = random.choice(list_leg)
+    rand_bg = random.choice(list_bg)
 
     # Formatting
-    rand_body = rand_body.replace("_", " ").title()
-    rand_head = rand_head.replace("_", " ").title()
-    rand_hand = rand_hand.replace("_", " ").title()
-    rand_leg = rand_leg.replace("_", " ").title()
+    # rand_body = rand_body.replace("_", " ").title()
+    # rand_head = rand_head.replace("_", " ").title()
+    # rand_hand = rand_hand.replace("_", " ").title()
+    # rand_leg = rand_leg.replace("_", " ").title()
 
     attributes = [
         {
@@ -68,6 +71,10 @@ def rand_attributes(id):
         {
             "trait_type": "Leg",
             "value": rand_leg
+        },
+        {
+            "trait_type":"bg",
+            "value":rand_bg
         }
     ]
 
