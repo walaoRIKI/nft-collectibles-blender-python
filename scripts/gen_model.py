@@ -9,7 +9,7 @@ import shutil
 # ----------- Settings -----------------------------------------------------------
 
 # An absolute path for the root directory
-PROJECT_DIR = "c:/nft-collectibles-blender-python/"
+PROJECT_DIR = "D:/Unity Git Project/nft-collectibles-blender-python/"
 
 # Parts directory containing each directory like "body" or "head" or "misc"
 PARTS_DIR = PROJECT_DIR + "parts/"
@@ -58,15 +58,6 @@ def append_asset_misc():
     scene = bpy.context.scene
     scene.camera = cam
 
-
-def assign_bg_material(mat_type):
-    bg = bpy.data.objects["bg"]
-    mat = bpy.data.materials.get(mat_type)
-
-    # Assign material
-    bg.data.materials[0] = mat
-
-
 def append_asset_body(t):
     body_type = mat_type = "body_" + t
 
@@ -75,7 +66,6 @@ def append_asset_body(t):
 
     body_col = bpy.data.collections[body_type]
 
-
 def append_asset_head(t):
     head_type = mat_type = "head_" + t
 
@@ -83,6 +73,22 @@ def append_asset_head(t):
     bpy.ops.wm.append(filename=head_type, directory=path)
 
     head_col = bpy.data.collections[head_type]
+
+def append_asset_hand(t):
+    hand_type = mat_type = "hand_" + t
+
+    path = PARTS_DIR + "hand/" + hand_type + ".blend/Collection/"
+    bpy.ops.wm.append(filename=hand_type, directory=path)
+
+    hand_col = bpy.data.collections[hand_type]
+
+def append_asset_leg(t):
+    leg_type = mat_type = "leg_" + t
+
+    path = PARTS_DIR + "leg/" + leg_type + ".blend/Collection/"
+    bpy.ops.wm.append(filename=leg_type, directory=path)
+
+    leg_col = bpy.data.collections[leg_type]
 
 
 def render(id):
@@ -104,15 +110,19 @@ def remove_assets():
 
 def generate(id, adict):
     for attr in adict["attributes"]:
-        # Background
-        if attr["trait_type"] == "Background" and attr["value"] != "":
-            assign_bg_material("bg_" + attr["value"].lower())
+        print(attr["trait_type"])
         # Body
         if attr["trait_type"] == "Body" and attr["value"] != "":
             append_asset_body(attr["value"].replace(" ", "_").lower())
         # Head
         if attr["trait_type"] == "Head" and attr["value"] != "":
             append_asset_head(attr["value"].replace(" ", "_").lower())
+        # Head
+        if attr["trait_type"] == "Hand" and attr["value"] != "":
+            append_asset_hand(attr["value"].replace(" ", "_").lower())
+            # Head
+        if attr["trait_type"] == "Leg" and attr["value"] != "":
+            append_asset_leg(attr["value"].replace(" ", "_").lower())
 
     render(str(id))
     remove_assets()

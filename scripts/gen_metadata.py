@@ -11,7 +11,7 @@ import shutil
 TOTAL_CHARACTERS = 3
 
 # An absolute path for the root directory
-PROJECT_DIR = "c:/nft-collectibles-blender-python/"
+PROJECT_DIR = "D:/Unity Git Project/nft-collectibles-blender-python/"
 
 # Output directory to where all metadata files generated
 OUTPUTS_DIR = PROJECT_DIR + "outputs/"
@@ -24,14 +24,17 @@ METADATA_IMAGE_URL = "https://example.com/"
 METADATA_EXTERNAL_URL = "https://example.com/"
 
 # List - One item will be selected for each list
-list_bg = [
-    "green", "navy", "red", "yellow"
-]
 list_body = [
-    "shirt", "tanktop", "zombie"
+    "1", "2"
 ]
 list_head = [
-    "devil", "dragon", "frog", "pixel", "warrior"
+    "1", "2", "3"
+]
+list_hand = [
+    "1", "2"
+]
+list_leg = [
+    "1", "2"
 ]
 # -------------------------------------------------------------------------------------------------------
 
@@ -40,10 +43,14 @@ def rand_attributes(id):
     # Random parts
     rand_head = random.choice(list_head)
     rand_body = random.choice(list_body)
+    rand_hand = random.choice(list_hand)
+    rand_leg = random.choice(list_leg)
 
     # Formatting
     rand_body = rand_body.replace("_", " ").title()
     rand_head = rand_head.replace("_", " ").title()
+    rand_hand = rand_hand.replace("_", " ").title()
+    rand_leg = rand_leg.replace("_", " ").title()
 
     attributes = [
         {
@@ -53,22 +60,18 @@ def rand_attributes(id):
         {
             "trait_type": "Head",
             "value": rand_head
+        },
+        {
+            "trait_type": "Hand",
+            "value": rand_hand
+        },
+        {
+            "trait_type": "Leg",
+            "value": rand_leg
         }
     ]
 
     return attributes
-
-
-def rand_attr_bg():
-    rand_bg = random.choice(list_bg).title()
-
-    attr = {
-        "trait_type": "Background",
-        "value": rand_bg
-    }
-
-    return attr
-
 
 def main():
     # Check settings
@@ -97,9 +100,6 @@ def main():
     if len(unique_list) < TOTAL_CHARACTERS:
         print("ERROR: Properties duplicate. Please run again.")
         return
-    # Add background to attribute
-    for u in unique_list:
-        u["attributes"].append(rand_attr_bg())
 
     json_data = {}
 
