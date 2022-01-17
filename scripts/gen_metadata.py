@@ -8,7 +8,7 @@ import shutil
 #  --- Settings -----------------------------------------------------------------------------------------
 
 # Total number of characters generated
-TOTAL_CHARACTERS = 20
+TOTAL_CHARACTERS = 5
 
 # An absolute path for the root directory
 PROJECT_DIR = "/Users/teoh/Desktop/nft-collectibles-blender-python/"
@@ -59,6 +59,10 @@ def rand_attributes(id):
 
     attributes = [
         {
+            "trait_type":"bg",
+            "value":rand_bg
+        },
+        {
             "trait_type": "Body",
             "value": rand_body
         },
@@ -73,10 +77,6 @@ def rand_attributes(id):
         {
             "trait_type": "Leg",
             "value": rand_leg
-        },
-        {
-            "trait_type":"bg",
-            "value":rand_bg
         }
     ]
 

@@ -110,6 +110,7 @@ def background_ChangeImage(t):
     if img_node:
         print("Success Get")
         img_node.image = bpy.data.images.load(path)
+        print("Path " + path)
 
 def render(id):
     # Render
@@ -121,7 +122,7 @@ def render(id):
 
 def remove_assets():
     for col in bpy.data.collections:
-        if col.name != "misc" or col.name != "background":
+        if col.name != "misc" and col.name != "background":
             for obj in col.objects:
                 bpy.data.objects.remove(obj)
             bpy.data.collections.remove(col)
