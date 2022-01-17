@@ -11,7 +11,7 @@ import shutil
 TOTAL_CHARACTERS = 20
 
 # An absolute path for the root directory
-PROJECT_DIR = "C:/Users/teoh_/Desktop/Git Project/NFT Collectible/"
+PROJECT_DIR = "/Users/teoh/Desktop/nft-collectibles-blender-python/"
 
 # Output directory to where all metadata files generated
 OUTPUTS_DIR = PROJECT_DIR + "outputs/"
@@ -37,6 +37,8 @@ list_leg = [
     "samurai 5", "samurai 7"
 ]
 list_bg = [
+    "bg1", "bg2", "bg3", "bg4", "bg5", "bg6", "bg7", "bg8", "bg9", "bg10", "bg11", "bg12", "bg13", "bg14", "bg15",
+    "bg16", "bg17"
 ]
 # -------------------------------------------------------------------------------------------------------
 
